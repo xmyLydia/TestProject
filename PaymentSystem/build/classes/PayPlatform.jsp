@@ -12,6 +12,8 @@
 <body>
 <div class="container">
 <% 
+	String username = new String(request.getParameter("user").getBytes("ISO-8859-1"),"UTF-8");
+	 
     String costShow = request.getParameter("key");
     String cs[]=costShow.split("/");
     String cost=cs[0];
@@ -41,7 +43,7 @@
   	</div>
   	<br>
   	<br>
-  	<form action="AliSuccess.jsp" method="get"><input type="hidden" name="key" value=<%=costShow %>><input type="submit" class="btn btn-lg btn-success text-center" onclick="window.location.href='AliSuccess.jsp'" value="确认支付" /></form>
+  	<form action="AliSuccess.jsp" method="get"><input type="hidden" name="key" value=<%=costShow %>><input type="hidden" name="user" value=<%=username %>/><input type="submit" class="btn btn-lg btn-success text-center" onclick="window.location.href='AliSuccess.jsp'" value="确认支付" /></form>
   </div>
   <div class="col-xs-2 col-md-offset-5">
    <img src="scan.jpg" class="img-responsive" alt="Cinque Terre">

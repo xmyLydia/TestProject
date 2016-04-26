@@ -93,24 +93,20 @@ html,body {
 </style>
 </head>
 <body>
-<% 
-    String costShow = request.getParameter("key");
-    String username = new String(request.getParameter("user").getBytes("ISO-8859-1"),"UTF-8");
-     
- %>
+
 <div class="box">
 		<div class="login-box">
 			<div class="login-title text-center">
-				<h1><small>支付宝登录</small></h1>
+				<h1><small>登录</small></h1>
 			</div>
 			<div class="login-content ">
 			<div class="form">
-			<form name="form1" action="PayPlatform.jsp" method="post" onSubmit="return check()">
+			<form name="form1" action="suppxls.jsp" method="post" onSubmit="return check()">
 				<div class="form-group">
 					<div class="col-xs-12  ">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-							<input type="text" id="userName" name="userName" class="form-control" placeholder="用户名">
+							<input type="text" id="userName" name="key" class="form-control" placeholder="用户名">
 						</div>
 					</div>
 				</div>
@@ -118,13 +114,13 @@ html,body {
 					<div class="col-xs-12  ">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-							<input type="password" id="userPWD" name="userPWD" class="form-control" placeholder="支付密码">
+							<input type="password" id="userPWD" name="userPWD" class="form-control" placeholder="登录密码">
 						</div>
 					</div>
 				</div>
 				<div class="form-group form-actions">
 					<div class="col-xs-4 col-xs-offset-4 ">
-					<form action="PayPlatform.jsp" method="get"><input type="hidden" name="key" value=<%=costShow %>><input type="hidden" name="user" value=<%=username %>/><button type="submit" name="submit" class="btn btn-sm btn-success text-center"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;登&nbsp;录&nbsp;&nbsp;</button></form>
+					 <button type="submit" name="submit" class="btn btn-sm btn-success text-center"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;登&nbsp;录&nbsp;&nbsp;</button> 
 					</div>
 				</div>
 				<div class="form-group">

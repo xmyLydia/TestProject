@@ -13,7 +13,7 @@
 <div class="container">
 <h1>电信支付平台</h1>
 <hr>
-<input type="button" class="btn btn-lg btn-info text-center" onclick="window.location.href='suppxls.jsp'" value="支付" />
+<input type="button" class="btn btn-lg btn-info text-center" onclick="window.location.href='LOGIN.jsp'" value="登录" />
  
 </div>
 				

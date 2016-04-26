@@ -95,6 +95,8 @@ html,body {
 <body>
 <% 
     String costShow = request.getParameter("key");
+    String username =new String(request.getParameter("user").getBytes("ISO-8859-1"),"UTF-8");
+    
  %>
 <div class="box">
 		<div class="login-box">
@@ -122,7 +124,7 @@ html,body {
 				</div>
 				<div class="form-group form-actions">
 					<div class="col-xs-4 col-xs-offset-4 ">
-					<form action="BankPlarform.jsp" method="get"><input type="hidden" name="key" value=<%=costShow %>><button type="submit" name="submit" class="btn btn-sm btn-success text-center"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;登&nbsp;录&nbsp;&nbsp;</button></form>
+					<form action="BankPlarform.jsp" method="get"><input type="hidden" name="key" value=<%=costShow %>><input type="hidden" name="user" value=<%=username %>/><button type="submit" name="submit" class="btn btn-sm btn-success text-center"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;登&nbsp;录&nbsp;&nbsp;</button></form>
 					</div>
 				</div>
 				<div class="form-group">

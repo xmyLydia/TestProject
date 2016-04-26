@@ -17,6 +17,10 @@
    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 		  </head>
 		 <body >
+ <% 
+    String username =new String(request.getParameter("key").getBytes("ISO-8859-1"),"UTF-8");
+ %>
+ 
 		 <div class="container">
 		 <h1>支付方式</h1>
 	 
@@ -29,6 +33,8 @@
 		  <h2>清单</h2>
 		 <%
 		 String costToAli="";
+		 String payPerson="";
+		 int theRow=0;
 		request.setCharacterEncoding("UTF-8");
 		try {
 		String path=request.getParameter("filename");
@@ -40,11 +46,31 @@
 		int columns = sheet.getColumns();
 		int rowspan = 0;
 		int colspan = 0;
+		
+		for(int m=1;m<rows;m++){
+			Cell cellUser = sheet.getCell(5, m);
+			payPerson=cellUser.getContents();
+			if(payPerson.equals(username)){
+				theRow=m;
+				break;
+			}
+		}
+		
 		out.print("<table border='1' cellpadding='0' cellspacing='0' style='font-size: 20px;border-collapse:collapse' bordercolor='#000000'>");
 		for (int i = 0; i < rows; i++) {
 		out.print("<tr>");
 		for (int j = 0; j < 7 ; j++) {
+		
 		Cell cell = sheet.getCell(j, i);
+		
+		String contextForRow= cell.getContents();
+		if(j==5){
+			if(contextForRow.equals(username)){
+				theRow=i;
+				//out.println(theRow+"#####");
+			}
+		}
+		
 		cell_style.ReadRange(sheet,i,j);
 		rowspan = cell_style.getRowspan();
 		colspan = cell_style.getColspan();
@@ -63,9 +89,11 @@
 		out.print("<td width='"+(8*colspan)+"' rowspan='"+rowspan+"' colspan='"+colspan+"'>"+contents+"</td>");
 		j += colspan-1;
 		continue;
-		} else {
-		
+		} else { 
 		contents = cell.getContents();
+		
+	
+	 	if(i==0||i==theRow){
         if(j==4){
         	costToAli=contents;
 		}
@@ -78,9 +106,12 @@
 		+" width='"+(2000*colspan)+"'>"
 		+contents+"</Font></td>");
 		j += colspan-1;
+		 
 		continue;
+		 }
 		}
 		}
+		//theRow=0;
 		out.print("</tr>");
 		}
 		read_workbook.close();
@@ -96,7 +127,7 @@
 		%> 
 	
 		<table class="table">
-   <form action="AliLogin.jsp" method="get"><th  ><br><input type="hidden" name="key" value=<%=costToAli %>/><input type="submit" class="btn btn-lg btn-success text-center" onclick="window.location.href='AliLogin.jsp'" value="支付宝" /></th></form> <form action="BankCard.jsp" method="get"><th  ><br><input type="hidden" name="key" value=<%=costToAli %>/><th ><br><input type="submit" class="btn btn-lg btn-success text-center" onclick="window.location.href='BankCard.jsp'" value="银行卡" /></th></form>
+   <form action="AliLogin.jsp" method="get"><th  ><br><input type="hidden" name="key" value=<%=costToAli %>/><input type="hidden" name="user" value=<%=username %>/><input type="submit" class="btn btn-lg btn-success text-center" onclick="window.location.href='AliLogin.jsp'" value="支付宝" /></th></form> <form action="BankCard.jsp" method="get"><th  ><br><input type="hidden" name="key" value=<%=costToAli %>/><input type="hidden" name="user" value=<%=username %>/><th ><br><input type="submit" class="btn btn-lg btn-success text-center" onclick="window.location.href='BankCard.jsp'" value="银行卡" /></th></form>
    </table>
 		 
 		 

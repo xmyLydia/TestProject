@@ -12,6 +12,7 @@
 <body>
 <div class="container">
 <% 
+    String username = new String(request.getParameter("user").getBytes("ISO-8859-1"),"UTF-8");
     String costShow = request.getParameter("key");
     String cs[]=costShow.split("/");
     String cost=cs[0];
@@ -24,7 +25,7 @@
   <br>
  </div>
  <div class="form">
- <form name="form1" action="AliSuccess.jsp" method="post" onSubmit="return check()">
+ <form name="form1" action="BankSuccess.jsp" method="post" onSubmit="return check()">
   <div class="panel-body">
    <div class="col-xs-10 col-sm-3" >  
   <div class="row">
@@ -41,7 +42,7 @@
   	</div>
   	<br>
   	<br>
-  	<form action="AliSuccess.jsp" method="get"><input type="hidden" name="key" value=<%=costShow %>><input type="submit" class="btn btn-lg btn-success text-center" onclick="window.location.href='AliSuccess.jsp'" value="确认支付" /></form>
+  	<form action="BankSuccess.jsp" method="get"><input type="hidden" name="key" value=<%=costShow %>><input type="hidden" name="user" value=<%=username %>/><input type="submit" class="btn btn-lg btn-success text-center" onclick="window.location.href='AliSuccess.jsp'" value="确认支付" /></form>
   </div>
   <div class="col-xs-2 col-md-offset-5">
     

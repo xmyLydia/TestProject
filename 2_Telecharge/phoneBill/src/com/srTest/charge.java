@@ -4,7 +4,7 @@ package com.srTest;
  * Created by ryw on 2016/4/20.
  */
 public class charge {
-    private double noPayAmountBefore;
+    private double noPayAmountBefore=0;
     private double base=25.0;
     private double charge;
 
@@ -26,9 +26,10 @@ public class charge {
         return charge;
     }
 
-    public void setCharge(int talkTime, int noPayTimesThisYear) {
+    public void setCharge(int talkTime, int noPayTimesThisYear,int noPayAmountBefore) {
         discount.getInstance().setDiscount(talkTime, noPayTimesThisYear);
-        this.charge=Arith.add(base,Arith.add(Arith.mul(noPayAmountBefore,0.05),Arith.mul(talkTime,Arith.mul(0.15,Arith.sub(1,discount.getInstance().getDiscount())))));
+        setNoPayAmountBefore(noPayAmountBefore);
+        this.charge=Arith.add(base,Arith.add(Arith.mul(this.noPayAmountBefore,0.05),Arith.mul(talkTime,Arith.mul(0.15,Arith.sub(1,discount.getInstance().getDiscount())))));
                 //+noPayAmountBefore*0.05+talkTime*0.15*(1-discount.getInstance().getDiscount());
     }
 

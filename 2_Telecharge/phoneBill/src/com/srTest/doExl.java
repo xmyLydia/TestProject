@@ -45,9 +45,9 @@ public class doExl {
                 Cell[] cells = sheet[0].getRow(j);
                 if (cells != null && cells.length > 0) {
                     //对每个单元格进行循环
-                    for (int k = 0; k < 3; k++) {
+                    for (int k = 2; k < 5; k++) {
                         //读取当前单元格的值
-                        result[j-1][k] = cells[k].getContents();
+                        result[j-1][k-2] = cells[k].getContents();
                     }
                 }
             }
@@ -87,8 +87,8 @@ public class doExl {
             for(int i=1;i<rowNum+1;i++){
 
                     //这里需要注意的是，在Excel中，第一个参数表示列，第二个表示行
-                    Number labelC = new Number(3, i, result[i-1][0]);
-                    Number labelD=new Number(4,i,result[i-1][1]);
+                    Number labelC = new Number(7, i, result[i-1][0]);
+                    Number labelD=new Number(8,i,result[i-1][1]);
                     //将生成的单元格添加到工作表中
                         try {
                             ws.addCell(labelC);

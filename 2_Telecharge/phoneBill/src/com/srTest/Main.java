@@ -21,6 +21,7 @@ public class Main {
                 result[i][0]=discount.getInstance().getDiscount();
                 result[i][1]=charge.getInstance().getCharge();
                 System.out.println(""+discount.getInstance().getDiscount()+" "+charge.getInstance().getCharge());
+                discount.getInstance().setDiscount(0);
             }
             doExl.writeExcel(file,result);
         }else {

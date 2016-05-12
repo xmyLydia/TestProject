@@ -29,8 +29,13 @@ public class charge {
     public void setCharge(int talkTime, int noPayTimesThisYear,int noPayAmountBefore) {
         discount.getInstance().setDiscount(talkTime, noPayTimesThisYear);
         setNoPayAmountBefore(noPayAmountBefore);
-        this.charge=Arith.add(base,Arith.add(Arith.mul(this.noPayAmountBefore,0.05),Arith.mul(talkTime,Arith.mul(0.15,Arith.sub(1,discount.getInstance().getDiscount())))));
-                //+noPayAmountBefore*0.05+talkTime*0.15*(1-discount.getInstance().getDiscount());
+        if(discount.getInstance().getDiscount()<0){
+            this.charge=discount.getInstance().getDiscount();
+        }else {
+            this.charge=Arith.add(base,Arith.add(Arith.mul(this.noPayAmountBefore,0.05),Arith.mul(talkTime,Arith.mul(0.15,Arith.sub(1,discount.getInstance().getDiscount())))));
+            //+noPayAmountBefore*0.05+talkTime*0.15*(1-discount.getInstance().getDiscount());
+        }
+
     }
 
     public double getNoPayAmountBefore() {
